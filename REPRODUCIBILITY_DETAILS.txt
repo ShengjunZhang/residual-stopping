@@ -1,0 +1,126 @@
+Supplementary material 1
+Residual-based stopping rules for equilibrium-constrained optimization
+Applied Mathematics and Computation
+Shengjun Zhang; Tingyi Liu (corresponding author)
+Corresponding email: tingyiL@whu.edu.cn
+
+CONTENTS
+
+manuscript_jamc_v6 contains the enclosure implementation, numerical programs,
+figure builders, and frozen numerical_results. experiments contains cached
+TNTP inputs, parsers, the earlier test programs, and their archived data.
+Supplementary material 2 contains additional proofs, parameter/localization figures,
+the block-structure diagnostic, and the earlier comparisons.
+
+The block refinement is implemented in block_enclosure.py. Run:
+
+  python manuscript_jamc_v6/validate_block_enclosure.py
+
+It independently checks face coverage, exact support witnesses, projected
+bound inclusion, and nonlinear value correction. It also regenerates the
+45-run diagonal diagnostic (dimensions 2, 200, 5000; three epsilon values;
+five seeds), its CSV/JSON files, and BlockFig.eps/pdf. This diagnostic
+isolates enclosure tightness, not end-to-end optimization performance.
+
+REPRODUCTION
+
+Install requirements.txt in a Python environment. From the extracted root:
+
+  python manuscript_jamc_v6/validate_ellipsoid_enclosure.py
+  python manuscript_jamc_v6/build_v3_results.py
+
+The validator checks principal-inverse order, ellipsoid support, nonlinear
+value and general-objective enclosures, objective-value bounds, finite
+differences, reuse, and component localization. Its small reference
+problems use independent face enumeration. The figure builder reads the
+frozen data and regenerates the four sparse/network figures as vector EPS/PDF files.
+It also generates table and text fragments; it does not edit the manuscript.
+
+Full benchmark commands:
+
+  python manuscript_jamc_v6/run_sparse_enclosure_benchmark.py --etas
+  python manuscript_jamc_v6/run_sparse_enclosure_benchmark.py --paired-relative --etas
+  python manuscript_jamc_v6/run_elastic_network_benchmark.py
+  python manuscript_jamc_v6/build_v3_results.py
+
+These commands replace the corresponding recorded CSV files. Run them in a
+copy to retain the published measurements. The sparse study has 510 runs;
+the paired gradient-control study has 240 runs; the elastic-demand study
+has 90 runs. Each uses five seeds. Sparse dimensions are 200, 1000, 5000,
+with coupling parameters 1 and 5 and 40 upper steps. Elastic-demand models
+use 30 upper steps and contain 555, 1350, and 1634 path variables.
+Recorded Python, numerical-library, platform, and thread metadata accompany
+each benchmark. Timing measurements depend on the machine.
+
+The EI policies use computable multiplier-residual bounds for the specified
+positive definite models. The component variants additionally use the
+componentwise residual vector and the Stieltjes property. Their full
+comparison factorization and solves are charged to online time; localization
+reduces the changing principal systems. Cached geometry is reset at every
+upper point and reused only for a covered residual class. The archived
+histories include 22500 accepted EI updates, all passing the independent
+reference coverage checks at the numerical tolerance stated in the code.
+These are floating-point numerical checks, not interval-arithmetic proofs.
+
+POLICIES AND METRICS
+
+FW4: four advancing lower projections per upper step.
+FR1e-4 / FR1e-6: fixed natural-residual tolerances.
+Scheduled: an increasing, residual-unaware warm-start iteration budget.
+RG: norm-based relative observed-gradient control.
+W-RG: componentwise comparison-based relative observed-gradient control.
+EI-A / EI-G: ellipsoidal update / observed-gradient control.
+EI-L: update control with nested-class geometry reuse.
+EI-C: component-localized update control.
+EI-CG / EI-CGL: component-localized gradient control without / with reuse.
+
+The paired table uses the same gradient-error acceptance condition and
+eta=0.20 for RG, W-RG, EI-CG, and EI-CGL. Additional EI comparisons use
+eta=0.10 and 0.40. The stationarity floor is 1e-5. The stopping criteria,
+stepsizes, model construction, and exact-gradient diagnostics are explicit
+in the programs.
+
+Work counts actual advancing projections and the additional projections
+performed by natural-residual checks. KKT residual checks use matrix-vector
+products; their cost is included in time. All online setup, factorization,
+gradient construction, and enclosure costs are timed. Reference solves,
+coverage checks, and instance generation are outside the timed blocks.
+
+Stationarity is the final reference-based projected-gradient mapping norm.
+Gap to reference is the absolute objective difference from a finite upper
+run with tightly solved lower problems, not a global optimality gap.
+Summary CSV files contain means and sample standard deviations (ddof=1).
+Numerically tiny gaps are clipped only in logarithmic plots.
+
+EARLIER COMPARISONS
+
+To regenerate the supplementary figures:
+
+  python manuscript_jamc_v6/build_numerics.py
+  python manuscript_jamc_v6/run_compatible_face_benchmark.py --plot-only
+
+These generate LegacyFig1, LegacyFig2, LegacyFig4, and LegacyFig3,
+respectively, without replacing the main figures. Independent validation
+of the earlier explicit face-screening construction:
+
+  python manuscript_jamc_v6/run_compatible_face_benchmark.py --validate-only
+
+The archived calibration split uses groups 0--39 for training and 40--79
+for testing, keeping all budgets of each group together. Calibration
+coverage is empirical. Earlier traffic times include tight-lower diagnostic
+evaluations; they are evaluation times, distinct from the new online timing
+convention. Earlier fixed-demand traffic uses total travel time; the new
+elastic-demand tests use the nonlinear value objective in the main article.
+
+TNTP DATA ATTRIBUTION
+
+Cached inputs were obtained from:
+https://github.com/bstabler/TransportationNetworks
+
+The source is the Transportation Networks for Research Core Team, maintained
+by Ben Stabler, Hillel Bar-Gera, and Elizabeth Sall. Original headers and
+metadata are retained. Consult the source for dataset terms and provenance.
+The new tests cover all positive-demand OD pairs with candidate shortest
+paths, respecting centroid-through restrictions. Their costs are affine
+and elastic demand is specified in the model; they are network-derived
+candidate-path models rather than the original nonlinear TNTP assignments.

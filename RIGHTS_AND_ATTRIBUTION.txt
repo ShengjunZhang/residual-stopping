@@ -1,0 +1,16 @@
+Original research code and generated results
+Shengjun Zhang and Tingyi Liu are the authors of the associated work.
+No new blanket distribution license has been selected on their behalf.
+The authors should select appropriate repository terms before publication.
+
+Third-party transportation inputs
+The files under experiments/data are cached TNTP inputs. Their source is:
+Transportation Networks for Research Core Team
+https://github.com/bstabler/TransportationNetworks
+Accessed 14 November 2026 for source and rights verification.
+
+The source specifies academic-research use and source attribution.
+Original dataset headers and metadata have been retained. A license
+selected for the authors' code or generated data must not override these
+third-party terms. Repository metadata should identify the TNTP inputs
+separately from original code and generated results.

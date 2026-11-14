@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite this code and data when using the accompanying methods or results."
+title: "Code and data for Residual-based stopping rules for equilibrium-constrained optimization"
+type: software
+version: "amc-v1-github-flat"
+authors:
+  - family-names: Zhang
+    given-names: Shengjun
+    affiliation: "School of Artificial Intelligence, Hubei University"
+  - family-names: Liu
+    given-names: Tingyi
+    affiliation: "School of Economics and Management, Wuhan University"
+    email: "tingyiL@whu.edu.cn"
+keywords:
+  - equilibrium-constrained optimization
+  - variational inequalities
+  - residual stopping
+  - ellipsoidal enclosures

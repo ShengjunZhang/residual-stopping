@@ -1,0 +1,42 @@
+{
+  "title": "Code and data for Residual-based stopping rules for equilibrium-constrained optimization",
+  "version": "amc-v1-github-flat",
+  "prepared_on": "2026-11-14",
+  "type": "software and dataset",
+  "authors": [
+    {
+      "given_name": "Shengjun",
+      "family_name": "Zhang",
+      "affiliation": "School of Artificial Intelligence, Hubei University"
+    },
+    {
+      "given_name": "Tingyi",
+      "family_name": "Liu",
+      "affiliation": "School of Economics and Management, Wuhan University",
+      "corresponding_author": true,
+      "email": "tingyiL@whu.edu.cn"
+    }
+  ],
+  "description": "Code, generated CSV/JSON data, validation scripts, and figure assets for Residual-based stopping rules for equilibrium-constrained optimization. The archive includes independent face-enumeration checks, sparse positive definite affine variational inequalities with up to 5000 lower variables, transportation-derived elastic-demand tests, and supplementary comparisons. Numerical data and executable research files are frozen from the JAMC v8 scientific version; this AMC release changes the manuscript presentation and archive documentation, not the measured results. Cached TNTP inputs retain their source attribution and academic-research terms.",
+  "keywords": [
+    "equilibrium-constrained optimization",
+    "variational inequality",
+    "residual stopping",
+    "ellipsoidal enclosure"
+  ],
+  "related_source": "https://github.com/bstabler/TransportationNetworks",
+  "funding": [
+    {
+      "funder": "National Social Science Fund of China",
+      "program": "Major Program",
+      "grant": "24&ZD035"
+    },
+    {
+      "funder": "National Social Science Fund of China",
+      "program": "Youth Program",
+      "grant": "24CTJ010"
+    }
+  ],
+  "license_status": "Author selection required; TNTP academic-research terms remain separate",
+  "distribution": "Flat source files; compressed inputs, recorded results, and figures; local reconstruction by prepare.py"
+}
